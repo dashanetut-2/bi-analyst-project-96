@@ -1,0 +1,16 @@
+"visit_date","visitors_count","utm_source","utm_medium","utm_campaign","total_cost","leads_count","purchases_count","revenue"
+2023-06-01 00:00:00.000,103,yandex,cpc,freemium,21 654,101,25,1 654 810
+2023-06-01 00:00:00.000,78,yandex,cpc,prof-frontend,57 138,74,12,1 057 000
+2023-06-01 00:00:00.000,62,yandex,cpc,prof-python,33 026,65,8,680 246
+2023-06-01 00:00:00.000,31,yandex,cpc,base-python,12 524,28,7,476 021
+2023-06-01 00:00:00.000,71,vk,cpc,prof-python,2 028,40,5,355 564
+2023-06-01 00:00:00.000,80,vk,cpc,freemium-frontend,3 160,44,5,338 083
+2023-06-01 00:00:00.000,49,yandex,cpc,prof-java,29 490,49,4,284 590
+2023-06-01 00:00:00.000,40,yandex,cpc,base-frontend,18 061,41,3,268 515
+2023-06-01 00:00:00.000,51,vk,cpc,prof-java,3 115,24,2,232 726
+2023-06-01 00:00:00.000,14,yandex,cpc,prof-data-analytics,10 086,14,2,220 264
+2023-06-01 00:00:00.000,13,yandex,cpc,prof-professions-brand,4 818,13,3,154 287
+2023-06-20 00:00:00.000,3,telegram,cpp,base-java,0,1,1,151 192
+2023-06-01 00:00:00.000,4,yandex,cpc,dod-php,5 964,4,1,150 255
+2023-06-01 00:00:00.000,4,yandex,cpc,base-professions-retarget,151,4,1,134 100
+2023-06-25 00:00:00.000,49,admitad,cpa,admitad,0,1,1,134 100
