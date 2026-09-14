@@ -1,24 +1,12 @@
-WITH lead_visits AS (
+WITH paid_sessions AS (
     SELECT
-        s.visitor_id,
-        s.visit_date,
-        s.source AS utm_source,
-        s.medium AS utm_medium,
-        s.campaign AS utm_campaign,
-        l.lead_id,
-        l.created_at,
-        l.amount,
-        l.closing_reason,
-        l.status_id,
-        ROW_NUMBER() OVER (
-            PARTITION BY l.visitor_id
-            ORDER BY s.visit_date DESC
-        ) AS rn
-    FROM sessions AS s
-    LEFT JOIN leads AS l
-        ON s.visitor_id = l.visitor_id
-        AND l.created_at >= s.visit_date
-    WHERE s.medium IN (
+        visitor_id,
+        visit_date,
+        source AS utm_source,
+        medium AS utm_medium,
+        campaign AS utm_campaign
+    FROM sessions
+    WHERE medium IN (
         'cpc',
         'cpm',
         'cpa',
@@ -27,6 +15,26 @@ WITH lead_visits AS (
         'tg',
         'social'
     )
+),
+lead_visits AS (
+    SELECT
+        s.visitor_id,
+        s.visit_date,
+        s.utm_source,
+        s.utm_medium,
+        s.utm_campaign,
+        l.lead_id,
+        l.amount,
+        l.closing_reason,
+        l.status_id,
+        ROW_NUMBER() OVER (
+            PARTITION BY l.visitor_id
+            ORDER BY s.visit_date DESC
+        ) AS rn
+    FROM paid_sessions AS s
+    LEFT JOIN leads AS l
+        ON s.visitor_id = l.visitor_id
+        AND l.created_at >= s.visit_date
 ),
 visitors AS (
     SELECT
@@ -39,24 +47,7 @@ visitors AS (
             PARTITION BY visitor_id
             ORDER BY visit_date DESC
         ) AS rn
-    FROM (
-        SELECT
-            visitor_id,
-            visit_date,
-            source AS utm_source,
-            medium AS utm_medium,
-            campaign AS utm_campaign
-        FROM sessions
-        WHERE medium IN (
-            'cpc',
-            'cpm',
-            'cpa',
-            'youtube',
-            'cpp',
-            'tg',
-            'social'
-        )
-    ) AS s
+    FROM paid_sessions
 ),
 ads AS (SELECT
         campaign_date::date AS visit_date,
